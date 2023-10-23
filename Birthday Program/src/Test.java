@@ -5,7 +5,7 @@ public class Test {
 		
 		GenerateRandomBirthdays check = new GenerateRandomBirthdays();
 		check.showPeople();
-		check.showSharedBirthdays();
+		check.showPercentageOfSharedBirthdays();
 		
 	}
 	

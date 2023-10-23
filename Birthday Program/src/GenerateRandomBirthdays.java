@@ -9,6 +9,7 @@ public class GenerateRandomBirthdays {
 	private int numberOfRuns;
 	private int[] monthNumbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 	private int sharedBirthdayCount;
+	private double probabilityOfSharedBirthdays;
 	private BigInteger permutationOfBirthdays;
 	private Scanner kb = new Scanner(System.in);
 	private Random random = new Random();
@@ -17,13 +18,16 @@ public class GenerateRandomBirthdays {
 	public GenerateRandomBirthdays() {
 
 		numberOfPeople = getNumberOfPeople();
-		//numberOfRuns = getNumberOfRuns();
+		numberOfRuns = getNumberOfRuns();
+		
+		for (int i = 0; i < numberOfRuns; i++) {
 
-		for(int i = 0; i < numberOfPeople; i++) {
-			Person p = new Person();
-			p.setBirthday(generateRandomBirthday());
-			p.setPersonNumber(i);
-			people.add(p);
+			for(int j = 0; j < numberOfPeople; j++) {
+				Person p = new Person();
+				p.setBirthday(generateRandomBirthday());
+				p.setPersonNumber(j);
+				people.add(p);
+			}
 		}
 
 	}
@@ -65,14 +69,15 @@ public class GenerateRandomBirthdays {
 		}
 	}
 	
-	public void showSharedBirthdays() {
-		System.out.println(getCountOfSharedBirthdays(people));
+	public void showPercentageOfSharedBirthdays() {
+		System.out.println(getCountOfSharedBirthdays(people) + " people share a birthday");
+		System.out.println(calculatePercentageOfSharedBirthdays() + "% chance of two people sharing the same birthday");
 	}
 	
 	public int getCountOfSharedBirthdays(ArrayList<Person> people) {
 		int countOfSharedBirthdays = 0;
-		for (int i = 0; i < people.size(); i++) {
-			for (int j = i + 1; j < people.size(); j++) {
+		for (int i = 0; i < numberOfPeople; i++) {
+			for (int j = i + 1; j < numberOfPeople; j++) {
 				if (people.get(i).getBirthday().equals(people.get(j).getBirthday())) {
 					countOfSharedBirthdays++;
 					break;
@@ -139,6 +144,12 @@ public class GenerateRandomBirthdays {
 
 		return randomMonth + "/" + randomDay;
 
+	}
+	
+	public double calculatePercentageOfSharedBirthdays() {
+		sharedBirthdayCount = getCountOfSharedBirthdays(people);
+		probabilityOfSharedBirthdays = sharedBirthdayCount / numberOfRuns;
+		return probabilityOfSharedBirthdays;
 	}
 
 }
