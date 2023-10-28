@@ -1,2 +1,2 @@
 # applied-prob-and-stats
-Projects for Applied Probability and Statistics - Fall 2023
+Projects for Probability and Applied Statistics - Fall 2023
