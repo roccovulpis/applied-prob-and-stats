@@ -70,6 +70,7 @@ public class Factory {
 	public void writeToFile() {
 
 		try {
+			//Write to a file named "cars.csv" in the default workspace directory
 			BufferedWriter writer = new BufferedWriter(new FileWriter("cars.csv"));
 			//Write the header to the CSV file outside of the loop
 			writer.write(header);
@@ -92,6 +93,7 @@ public class Factory {
 	public void readFile() {
 
 		try {
+			//Read from a file named "cars.csv" in the default workspace directory
 			BufferedReader reader = new BufferedReader(new FileReader("cars.csv"));
 			String csvLine;
 			//Skip the header of the CSV file
